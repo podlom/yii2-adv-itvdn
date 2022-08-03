@@ -91,7 +91,9 @@ class SiteController extends Controller
             Yii::$app->session->setFlash('success', 'Welcome back, your first visit was at: ' . $visitDateTime);
         }
 
-        return $this->render('index');
+        $cookies = Yii::$app->request->getCookies();
+
+        return $this->render('index', ['cookies' => $cookies]);
     }
 
     /**
