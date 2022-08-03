@@ -41,8 +41,11 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'news' => 'news/index',
                 'news/<id:[0-9]+>' => 'news/view',
+                'category' => 'category/index',
                 'category/<id:[0-9]+>' => 'category/view',
+                'tag' => 'tag/index',
                 'tag/<id:[0-9]+>' => 'tag/view',
             ],
         ],
