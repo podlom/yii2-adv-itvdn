@@ -79,7 +79,7 @@ class SiteController extends Controller
     {
         if (!Yii::$app->session->get(self::INDEX_SESSION_NAME)) {
             Yii::$app->session->set(self::INDEX_SESSION_NAME, time());
-            Yii::$app->session->setFlash('success', 'Helo, it looks you are first time here.');
+            Yii::$app->session->setFlash('info', 'Helo, it looks you are first time here.');
         } else {
             $stamp = Yii::$app->session->get(self::INDEX_SESSION_NAME);
             $visitDateTime = '';
