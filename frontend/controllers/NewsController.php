@@ -12,4 +12,9 @@ class NewsController extends Controller
     {
         return 'You are on a page news/index';
     }
+
+    public function actionView($id)
+    {
+        return 'You are on a page news/view/' . $id;
+    }
 }
