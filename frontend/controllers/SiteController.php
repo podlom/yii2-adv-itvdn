@@ -21,6 +21,8 @@ use frontend\models\ContactForm;
  */
 class SiteController extends Controller
 {
+    const INDEX_SESSION_NAME = 'ts_first_visit_session';
+
     /**
      * {@inheritdoc}
      */
@@ -75,6 +77,20 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        if (!Yii::$app->session->get(self::INDEX_SESSION_NAME)) {
+            Yii::$app->session->set(self::INDEX_SESSION_NAME, time());
+            Yii::$app->session->setFlash('success', 'Helo, it looks you are first time here.');
+        } else {
+            $stamp = Yii::$app->session->get(self::INDEX_SESSION_NAME);
+            $visitDateTime = '';
+            if (!is_null($stamp)) {
+                $dateTime = new \DateTime();
+                $dateTime->setTimestamp($stamp);
+                $visitDateTime = $dateTime->format('Y-m-d H:i:s');
+            }
+            Yii::$app->session->setFlash('success', 'Welcome back, your first visit was at: ' . $visitDateTime);
+        }
+
         return $this->render('index');
     }
 
