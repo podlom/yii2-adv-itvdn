@@ -92,8 +92,10 @@ class SiteController extends Controller
         }
 
         $cookies = Yii::$app->request->getCookies();
+        $userIp = Yii::$app->request->getUserIP();
+        $userAgent = Yii::$app->request->getUserAgent();
 
-        return $this->render('index', ['cookies' => $cookies]);
+        return $this->render('index', ['cookies' => $cookies, 'userIp' => $userIp, 'userAgent' => $userAgent]);
     }
 
     /**
