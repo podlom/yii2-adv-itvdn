@@ -16,12 +16,10 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="category-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a(Yii::t('app', 'Create Category'), ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
+    <div>
+        <?= Html::a(Yii::t('app', 'Create Category'), ['create'], ['style' => 'float:right;', 'class' => 'btn btn-success']) ?>
+        <h1><?= Html::encode($this->title) ?></h1>
+    </div>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
