@@ -16,7 +16,11 @@ class CategoryController extends Controller
      */
     public function actionIndex()
     {
-        return 'You are on a page category/index';
+        $title = 'You are on a page category/index';
+
+        return $this->render('index', [
+            'title' => $title
+        ]);
     }
 
     /**
