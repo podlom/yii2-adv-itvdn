@@ -26,11 +26,10 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-index">
 
-    <h1><?= "<?= " ?>Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= "<?= " ?>Html::a(<?= $generator->generateString('Create ' . Inflector::camel2words(StringHelper::basename($generator->modelClass))) ?>, ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    <div>
+        <?= "<?= " ?>Html::a(<?= $generator->generateString('Create ' . Inflector::camel2words(StringHelper::basename($generator->modelClass))) ?>, ['create'], ['style' => 'float:right;', 'class' => 'btn btn-success pull-right']) ?>
+        <h1><?= "<?= " ?>Html::encode($this->title) ?></h1>
+    </div>
 
 <?= $generator->enablePjax ? "    <?php Pjax::begin(); ?>\n" : '' ?>
 <?php if(!empty($generator->searchModelClass)): ?>

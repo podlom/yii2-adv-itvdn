@@ -34,6 +34,8 @@ use yii\widgets\ActiveForm;
     }
 } ?>
     <div class="form-group">
+        <?= "<?= " ?>Html::a(<?= $generator->generateString('Cancel') ?>, ['<?=$generator->getControllerID()?>/index'], ['class' => 'btn btn-default']) ?>
+
         <?= "<?= " ?>Html::submitButton(<?= $generator->generateString('Save') ?>, ['class' => 'btn btn-success']) ?>
     </div>
 
