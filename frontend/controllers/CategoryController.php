@@ -4,6 +4,8 @@ namespace frontend\controllers;
 
 
 use yii\web\Controller;
+use yii\web\NotFoundHttpException;
+use frontend\models\Category;
 
 
 /**
@@ -29,6 +31,14 @@ class CategoryController extends Controller
      */
     public function actionView($id)
     {
-        return 'You are on a page category/view/' . $id;
+        $model = Category::findOne($id);
+
+        if (is_null($model)) {
+            throw new NotFoundHttpException('Category page was not found.');
+        }
+
+        return $this->render('view', [
+            'model' => $model,
+        ]);
     }
 }
