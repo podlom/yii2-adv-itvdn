@@ -4,6 +4,9 @@ namespace frontend\controllers;
 
 
 use yii\web\Controller;
+use frontend\models\Category;
+use frontend\models\News;
+use yii\web\NotFoundHttpException;
 
 
 /**
@@ -16,7 +19,11 @@ class NewsController extends Controller
      */
     public function actionIndex()
     {
-        return 'You are on a page news/index';
+        $title = 'You are on a page news/index';
+
+        return $this->render('index', [
+            'title' => $title
+        ]);
     }
 
     /**
@@ -25,6 +32,14 @@ class NewsController extends Controller
      */
     public function actionView($id)
     {
-        return 'You are on a page news/view/' . $id;
+        $model = News::findOne($id);
+
+        if (is_null($model)) {
+            throw new NotFoundHttpException('News page was not found.');
+        }
+
+        return $this->render('view', [
+            'model' => $model,
+        ]);
     }
 }
