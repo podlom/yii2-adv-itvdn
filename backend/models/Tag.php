@@ -4,6 +4,7 @@ namespace backend\models;
 
 
 use Yii;
+use yii\behaviors\SluggableBehavior;
 
 
 /**
@@ -32,10 +33,21 @@ class Tag extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['slug', 'title'], 'required'],
+            [['title'], 'required'],
             [['slug', 'title'], 'string', 'max' => 255],
             [['slug'], 'unique'],
             [['title'], 'unique'],
+        ];
+    }
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => SluggableBehavior::className(),
+                'attribute' => 'title',
+                'slugAttribute' => 'slug',
+            ],
         ];
     }
 
