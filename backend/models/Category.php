@@ -4,6 +4,7 @@ namespace backend\models;
 
 
 use Yii;
+use yii\behaviors\SluggableBehavior;
 
 
 /**
@@ -33,10 +34,21 @@ class Category extends \yii\db\ActiveRecord
     {
         return [
             ['enabled', 'default', 'value' => 0],
-            [['slug', 'title'], 'required'],
+            [['title'], 'required'],
             [['enabled'], 'boolean'],
             [['slug', 'title'], 'string', 'max' => 255],
             [['slug'], 'unique'],
+        ];
+    }
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => SluggableBehavior::className(),
+                'attribute' => 'title',
+                'slugAttribute' => 'slug',
+            ],
         ];
     }
 
