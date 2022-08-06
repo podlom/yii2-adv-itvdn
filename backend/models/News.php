@@ -4,6 +4,7 @@ namespace backend\models;
 
 
 use Yii;
+use yii\behaviors\SluggableBehavior;
 
 
 /**
@@ -37,13 +38,24 @@ class News extends \yii\db\ActiveRecord
     {
         return [
             ['enabled', 'default', 'value' => 0],
-            [['slug', 'title', 'description'], 'required'],
+            [['title', 'description'], 'required'],
             [['category_id'], 'integer'],
             [['enabled'], 'boolean'],
             [['description'], 'string'],
             [['slug', 'title'], 'string', 'max' => 255],
             [['slug'], 'unique'],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id'], 'message' => 'Category with such {attribute} does not exists'],
+        ];
+    }
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => SluggableBehavior::className(),
+                'attribute' => 'title',
+                'slugAttribute' => 'slug',
+            ],
         ];
     }
 
