@@ -35,6 +35,7 @@ class Tag extends \yii\db\ActiveRecord
             [['slug', 'title'], 'required'],
             [['slug', 'title'], 'string', 'max' => 255],
             [['slug'], 'unique'],
+            [['title'], 'unique'],
         ];
     }
 
