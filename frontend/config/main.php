@@ -8,9 +8,14 @@ $params = array_merge(
 
 return [
     'id' => 'app-frontend',
-    'defaultRoute' => 'site/index',
     'basePath' => dirname(__DIR__),
+
+    // i18n configuration
+    'sourceLanguage' => 'en-US',
+    'language' => 'uk-UA',
+
     'bootstrap' => ['log'],
+    'defaultRoute' => 'site/index',
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
         'request' => [
