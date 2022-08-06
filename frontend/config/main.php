@@ -66,13 +66,13 @@ return [
         'i18n' => [
             'translations' => [
                 'frontend' => [
-                    'class' => 'yii\i18n\PhpMessageSource',
-//                    'class' => 'yii\i18n\DbMessageSource',
-                    'basePath' => '@frontend/messages',
+//                    'class' => 'yii\i18n\PhpMessageSource',
+                    'class' => 'yii\i18n\DbMessageSource',
+//                    'basePath' => '@frontend/messages',
                     'sourceLanguage' => 'en-US',
-                    'fileMap' => [
-                        'frontend' => 'frontend.php',
-                    ],
+//                    'fileMap' => [
+//                        'frontend' => 'frontend.php',
+//                    ],
                 ],
                 'yii' => [
                     'class' => 'yii\i18n\PhpMessageSource',
