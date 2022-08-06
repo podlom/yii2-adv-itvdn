@@ -32,8 +32,9 @@ class Category extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            ['enabled', 'default', 'value' => 0],
             [['slug', 'title'], 'required'],
-            [['enabled'], 'integer'],
+            [['enabled'], 'boolean'],
             [['slug', 'title'], 'string', 'max' => 255],
             [['slug'], 'unique'],
         ];
