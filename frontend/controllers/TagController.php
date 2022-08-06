@@ -3,44 +3,55 @@
 namespace frontend\controllers;
 
 
-use yii\web\Controller;
-use frontend\models\Category;
-use frontend\models\News;
 use frontend\models\Tag;
+use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
 
 
 /**
- * Tag Controller
+ * Class TagController
+ *
+ * @package frontend\controllers
  */
-class TagController extends Controller
+class TagController extends \yii\web\Controller
 {
+
     /**
      * @return string
      */
     public function actionIndex()
     {
-        $title = 'You are on a page tag/index';
+        $title = 'You are on Tag/Index page';
+
+        $model = Tag::find();
 
         return $this->render('index', [
-            'title' => $title
+            'title' => $title,
+            'model' => $model,
         ]);
     }
 
     /**
-     * @param int $id
+     * @param $id
      * @return string
+     * @throws NotFoundHttpException
      */
     public function actionView($id)
     {
         $model = Tag::findOne($id);
 
-        if (is_null($model)) {
-            throw new NotFoundHttpException('Tag page was not found.');
+        if ($model === null) {
+            throw new NotFoundHttpException('Page not found');
         }
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $model->getNews(),
+            'pagination' => false,
+        ]);
 
         return $this->render('view', [
             'model' => $model,
+            'dataProvider' => $dataProvider,
         ]);
     }
 }
