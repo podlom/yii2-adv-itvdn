@@ -29,17 +29,17 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'slug',
             'title',
             // 'enabled',
-//            [
-//                'attribute' => 'enabled',
-//                'filter' => EnabledHelper::getEnabledFilter(),
-//                'value' => function ($model, $key, $index, $column) {
-//                    return EnabledHelper::getEnabledView($model->enabled);
-//                }
-//            ],
             [
                 'attribute' => 'enabled',
-                'format' => 'boolean',
+                'filter' => EnabledHelper::getEnabledFilter(),
+                'value' => function ($model, $key, $index, $column) {
+                    return EnabledHelper::getEnabledView($model->enabled);
+                }
             ],
+//            [
+//                'attribute' => 'enabled',
+//                'format' => 'boolean',
+//            ],
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Category $model, $key, $index, $column) {
