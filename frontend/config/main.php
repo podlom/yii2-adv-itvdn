@@ -46,13 +46,47 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                // Default
+                '/' => 'site/index',
+                'message' => 'site/message',
+
+                // News
                 'news' => 'news/index',
                 'news/<id:[0-9]+>' => 'news/view',
+
+                // Category
                 'category' => 'category/index',
                 'category/<id:[0-9]+>' => 'category/view',
+
+                // Tag
                 'tag' => 'tag/index',
                 'tag/<id:[0-9]+>' => 'tag/view',
             ],
+        ],
+        'i18n' => [
+            'translations' => [
+                'frontend' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+//                    'class' => 'yii\i18n\DbMessageSource',
+                    'basePath' => '@frontend/messages',
+                    'sourceLanguage' => 'en-US',
+                    'fileMap' => [
+                        'frontend' => 'frontend.php',
+                    ],
+                ],
+                'yii' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'sourceLanguage' => 'en-US',
+                    'basePath' => '@frontend/messages'
+                ],
+
+            ],
+        ],
+        'formatter' => [
+            'dateFormat' => 'dd.MM.yyyy',
+            'decimalSeparator' => ',',
+            'thousandSeparator' => ' ',
+            'currencyCode' => 'EUR',
         ],
     ],
     'params' => $params,

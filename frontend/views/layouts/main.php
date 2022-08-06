@@ -3,6 +3,8 @@
 /** @var \yii\web\View $this */
 /** @var string $content */
 
+
+use Yii;
 use common\widgets\Alert;
 use frontend\assets\AppAsset;
 use yii\bootstrap4\Breadcrumbs;
@@ -35,23 +37,23 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'News', 'items' => [
-            ['label' => 'Category', 'url' => ['/category/index']],
-            ['label' => 'News', 'url' => ['/news/index']],
-            ['label' => 'Tag', 'url' => ['/tag/index']],
+        ['label' => Yii::t('frontend', 'Home'), 'url' => ['/site/index']],
+        ['label' => Yii::t('frontend', 'News'), 'items' => [
+            ['label' => Yii::t('frontend', 'Category'), 'url' => ['/category/index']],
+            ['label' => Yii::t('frontend', 'News'), 'url' => ['/news/index']],
+            ['label' => Yii::t('frontend', 'Tag'), 'url' => ['/tag/index']],
         ]],
-        ['label' => 'About', 'url' => ['/site/about']],
-        ['label' => 'Contact', 'url' => ['/site/contact']],
+        ['label' => Yii::t('frontend', 'About'), 'url' => ['/site/about']],
+        ['label' => Yii::t('frontend', 'Contact'), 'url' => ['/site/contact']],
     ];
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+        $menuItems[] = ['label' => Yii::t('frontend', 'Signup'), 'url' => ['/site/signup']];
+        $menuItems[] = ['label' => Yii::t('frontend',   'Login'), 'url' => ['/site/login']];
     } else {
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline'])
             . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
+                Yii::t('frontend', 'Logout') . ' (' . Yii::$app->user->identity->username . ')',
                 ['class' => 'btn btn-link logout']
             )
             . Html::endForm()
