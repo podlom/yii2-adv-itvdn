@@ -5,6 +5,7 @@ use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use backend\models\Category;
+use backend\helpers\EnabledHelper;
 
 
 /* @var $this yii\web\View */
@@ -25,9 +26,20 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'columns' => [
             'id',
-            'slug',
+            // 'slug',
             'title',
-            'enabled',
+            // 'enabled',
+//            [
+//                'attribute' => 'enabled',
+//                'filter' => EnabledHelper::getEnabledFilter(),
+//                'value' => function ($model, $key, $index, $column) {
+//                    return EnabledHelper::getEnabledView($model->enabled);
+//                }
+//            ],
+            [
+                'attribute' => 'enabled',
+                'format' => 'boolean',
+            ],
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Category $model, $key, $index, $column) {

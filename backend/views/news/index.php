@@ -30,7 +30,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            // 'category_id',
             [
                 'label' => 'Category',
                 'attribute' => 'category_id',
@@ -39,7 +38,10 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'slug',
             'title',
             'description:ntext',
-            //'enabled',
+            [
+                'attribute' => 'enabled',
+                'format' => 'boolean',
+            ],
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, News $model, $key, $index, $column) {
