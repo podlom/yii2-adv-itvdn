@@ -3,9 +3,11 @@
 namespace frontend\controllers;
 
 
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use frontend\models\Category;
+use frontend\models\News;
 
 
 /**
@@ -20,8 +22,16 @@ class CategoryController extends Controller
     {
         $title = 'You are on a page category/index';
 
+        $dataProvider = new ActiveDataProvider([
+            'query' => Category::find()->innerJoinWith('news'),
+            'pagination' => [
+                'pageSize' => 20,
+            ]
+        ]);
+
         return $this->render('index', [
-            'title' => $title
+            'title' => $title,
+            'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -37,8 +47,14 @@ class CategoryController extends Controller
             throw new NotFoundHttpException('Category page was not found.');
         }
 
+        $dataProvider = new ActiveDataProvider([
+            'query' => $model->getNews(),
+            'pagination' => false,
+        ]);
+
         return $this->render('view', [
             'model' => $model,
+            'dataProvider' => $dataProvider,
         ]);
     }
 }
