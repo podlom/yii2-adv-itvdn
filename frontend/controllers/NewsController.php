@@ -3,10 +3,11 @@
 namespace frontend\controllers;
 
 
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
+use yii\web\NotFoundHttpException;
 use frontend\models\Category;
 use frontend\models\News;
-use yii\web\NotFoundHttpException;
 
 
 /**
@@ -21,8 +22,13 @@ class NewsController extends Controller
     {
         $title = 'You are on a page news/index';
 
+        $dataProvider = new ActiveDataProvider([
+            'query' => News::find()->innerJoinWith('category')
+        ]);
+
         return $this->render('index', [
-            'title' => $title
+            'title' => $title,
+            'dataProvider' => $dataProvider,
         ]);
     }
 
