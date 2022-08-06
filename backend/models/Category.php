@@ -68,7 +68,7 @@ class Category extends \yii\db\ActiveRecord
     /**
      * Gets query for [[News]].
      *
-     * @return \yii\db\ActiveQuery
+     * @return News[]|null|\yii\db\ActiveQuery
      */
     public function getNews()
     {
