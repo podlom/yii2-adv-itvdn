@@ -36,12 +36,14 @@ class News extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['category_id', 'enabled'], 'integer'],
+            ['enabled', 'default', 'value' => 0],
             [['slug', 'title', 'description'], 'required'],
+            [['category_id'], 'integer'],
+            [['enabled'], 'boolean'],
             [['description'], 'string'],
             [['slug', 'title'], 'string', 'max' => 255],
             [['slug'], 'unique'],
-            [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
+            [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id'], 'message' => 'Category with such {attribute} does not exists'],
         ];
     }
 
