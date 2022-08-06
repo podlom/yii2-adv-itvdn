@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use kartik\form\ActiveForm;
+use backend\helpers\CategoryHelper;
 
 
 /* @var $this yii\web\View */
@@ -13,14 +14,14 @@ use kartik\form\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'category_id')->textInput() ?>
+    <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
     <div class="row">
-        <div class="col-md-8">
-            <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+        <div class="col-md-6">
+            <?= $form->field($model, 'category_id')->dropDownList(CategoryHelper::getAvailableCategories()) ?>
         </div>
-        <div class="col-md-4">
-    <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
+        <div class="col-md-6">
+            <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
         </div>
     </div>
 
