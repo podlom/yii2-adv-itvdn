@@ -77,25 +77,15 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        if (!Yii::$app->session->get(self::INDEX_SESSION_NAME)) {
-            Yii::$app->session->set(self::INDEX_SESSION_NAME, time());
-            Yii::$app->session->setFlash('info', 'Helo, it looks you are first time here.');
-        } else {
-            $stamp = Yii::$app->session->get(self::INDEX_SESSION_NAME);
-            $visitDateTime = '';
-            if (!is_null($stamp)) {
-                $dateTime = new \DateTime();
-                $dateTime->setTimestamp($stamp);
-                $visitDateTime = $dateTime->format('Y-m-d H:i:s');
-            }
-            Yii::$app->session->setFlash('success', 'Welcome back, your first visit was at: ' . $visitDateTime);
-        }
+        return $this->render('index', []);
+    }
 
-        $cookies = Yii::$app->request->getCookies();
-        $userIp = Yii::$app->request->getUserIP();
-        $userAgent = Yii::$app->request->getUserAgent();
+    public function actionMessage()
+    {
+        // example of "yii" category messages
+//        Yii::$app->session->setFlash('success', Yii::t('yii', 'No results found.'));
 
-        return $this->render('index', ['cookies' => $cookies, 'userIp' => $userIp, 'userAgent' => $userAgent]);
+        return $this->render('message');
     }
 
     /**

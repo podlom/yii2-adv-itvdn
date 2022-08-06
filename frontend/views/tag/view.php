@@ -1,16 +1,19 @@
 <?php
-/**
- * @var \frontend\models\Tag $model
- */
 
 use yii\helpers\Html;
+use yii\data\ActiveDataProvider;
 use yii\widgets\ListView;
+use frontend\models\Tag;
 
-echo Html::tag('h1', 'Tag name - "' . $model->title . '"');
+
+/**
+ * @var Tag $model
+ * @var ActiveDataProvider $dataProvider
+ */
+
+echo Html::tag('h1', Yii::t('frontend', 'News with tag') . ' ' . $model->title);
 
 if ($dataProvider->getCount() > 0) {
-
-    echo Html::tag('h3', 'List of news related to the tag');
 
     echo ListView::widget([
         'dataProvider' => $dataProvider,
@@ -22,6 +25,6 @@ if ($dataProvider->getCount() > 0) {
 
 echo Html::tag(
     'p',
-    Html::a('Go back', ['tag/index'], ['class' => 'btn btn-default']),
+    Html::a(Yii::t('frontend', 'Go back'), ['tag/index'], ['class' => 'btn btn-default']),
     ['class' => 'text-right']
 );

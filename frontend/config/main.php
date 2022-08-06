@@ -86,7 +86,7 @@ return [
             'dateFormat' => 'dd.MM.yyyy',
             'decimalSeparator' => ',',
             'thousandSeparator' => ' ',
-            'currencyCode' => 'EUR',
+            'currencyCode' => 'UAH',
         ],
     ],
     'params' => $params,

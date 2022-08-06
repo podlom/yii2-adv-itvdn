@@ -20,10 +20,35 @@ return [
     'About' => 'Про нас',
     'Category' => 'Категорії',
     'Contact' => 'Контакт',
-    'Home' => 'Додому',
+    'Go back' => 'Повернутися',
+    'Home' => 'Головна',
     'Login' => 'Вхід',
     'Logout' => 'Вихід',
+    'New by category {name}' => 'Новини в категорії «{name}»',
     'News' => 'Новини',
+    'News in this category' => 'Новини по темі цієї категорії',
+    'News with tag' => 'Новини на тему',
+    'Online news' => 'Новини онлайн',
+    'Page not found' => 'Сторінку не знайдено',
     'Signup' => 'Реєстрація',
-    'Tag' => 'Тег',
+    'Start the journey' => 'Почати подорож',
+    'Subscribe to get the latest news' => 'Підпишіться, щоб отримувати найсвіжіші новини',
+    'Tag' => 'Позначки',
+    'You are on tags index page' => 'Весь перелік новин за темами',
+    'New message after switched to db message source.' => '',
+    'You {n,plural,
+    offset:1
+    =0{did not like this}
+    =1{liked this}
+    one{and one other person liked this}
+    other{and # others liked this}
+}' => 'Ви {n,plural,
+    offset:1
+    =0{ще не поставили лайк}
+    =1{поставили лайк}
+    one{и ще один поставили лайк}
+    other{та # інших поставили лайк}
+}',
+    '{n,number} is spelled as {n,spellout}' => 'Число {n,number} прописом: {n, spellout}',
+    'Default value for source language is English' => 'Англійська це значення для мови за замовчанням',
 ];
