@@ -17,8 +17,8 @@ class NewsSearch extends News
     public function rules()
     {
         return [
-            [['id', 'category_id', 'enabled'], 'integer'],
-            [['slug', 'title', 'description'], 'safe'],
+            [['id', 'enabled'], 'integer'],
+            [['category_id', 'slug', 'title', 'description'], 'string'],
         ];
     }
 
@@ -40,7 +40,7 @@ class NewsSearch extends News
      */
     public function search($params)
     {
-        $query = News::find();
+        $query = News::find()->joinWith('category');
 
         // add conditions that should always apply here
 
@@ -58,14 +58,14 @@ class NewsSearch extends News
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
-            'category_id' => $this->category_id,
-            'enabled' => $this->enabled,
+            '{{%news}}.id' => $this->id,
+            '{{%news}}.enabled' => $this->enabled,
         ]);
 
-        $query->andFilterWhere(['like', 'slug', $this->slug])
-            ->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'description', $this->description]);
+        $query->andFilterWhere(['like', '{{%news}}.slug', $this->slug])
+            ->andFilterWhere(['like', '{{%news}}.title', $this->title])
+            ->andFilterWhere(['like', 'category.title', $this->category_id])
+            ->andFilterWhere(['like', '{{%news}}.description', $this->description]);
 
         return $dataProvider;
     }

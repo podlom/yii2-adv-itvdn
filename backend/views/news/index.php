@@ -32,8 +32,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             // 'category_id',
             [
-                    'label' => 'Category',
-                'attribute' => 'category.title',
+                'label' => 'Category',
+                'attribute' => 'category_id',
+                'value' => 'category.title',
             ],
             // 'slug',
             'title',
