@@ -4,6 +4,8 @@ namespace api\models;
 
 
 use Yii;
+use yii\helpers\Url;
+use yii\web\Linkable;
 
 
 /**
@@ -18,7 +20,7 @@ use Yii;
  *
  * @property Category $category
  */
-class News extends \yii\db\ActiveRecord
+class News extends \yii\db\ActiveRecord implements Linkable
 {
     /**
      * {@inheritdoc}
@@ -31,14 +33,6 @@ class News extends \yii\db\ActiveRecord
     public function rules()
     {
         return [];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getCategory()
-    {
-        return $this->hasOne(Category::class, ['id' => 'category_id']);
     }
 
     public function fields()
@@ -54,19 +48,30 @@ class News extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-//    public function getTagToNews()
-//    {
-//        return $this->hasMany(TagToNews::class, ['news_id' => 'id']);
-//    }
+    public function extraFields()
+    {
+        return [
+            'description',
+            'category',
+        ];
+    }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-//    public function getTags()
-//    {
-//        return $this->hasMany(Tag::class, ['id' => 'tag_id'])->via('tagToNews');
-//    }
+    public function getCategory()
+    {
+        return $this->hasOne(Category::class, ['id' => 'category_id']);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getLinks()
+    {
+        return [
+            'self' => Url::to(['news/view', 'id' => $this->id], true),
+            'category' => Url::to(['category/view', 'id' => $this->category_id], true),
+        ];
+    }
 }

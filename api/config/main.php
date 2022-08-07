@@ -59,6 +59,10 @@ return [
                     'controller' => 'news',
 //                    'only' => ['index', 'options'],
                 ],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'tag',
+                ],
             ],
         ],
     ],
