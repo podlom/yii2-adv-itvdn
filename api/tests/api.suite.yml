@@ -5,6 +5,6 @@ modules:
         - \api\tests\Helper\Api
         - REST:
             depends: PhpBrowser
-            url: http://api.yii2.loc/index-test.php
+            url: http://localhost:8083/index-test.php
         - Yii2:
             part: [fixtures]
