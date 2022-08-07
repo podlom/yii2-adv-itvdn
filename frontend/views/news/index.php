@@ -13,6 +13,7 @@ use yii\data\ActiveDataProvider;
 echo HTML::tag('h2', $title);
 
 echo ListView::widget([
+    'id' => 'newsGrid',
     'dataProvider' => $dataProvider,
     'itemView' => '_news_item_short',
     'itemOptions' => ['tag' => null],
