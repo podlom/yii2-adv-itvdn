@@ -54,6 +54,11 @@ return [
 //                    'pluralize' => false,
 //                    'only' => ['index', 'options'],
                 ],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'news',
+//                    'only' => ['index', 'options'],
+                ],
             ],
         ],
     ],
