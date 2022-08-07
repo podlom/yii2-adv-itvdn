@@ -2,9 +2,7 @@
 
 namespace api\models\search;
 
-
 use yii\base\Model;
-
 
 /**
  * This is the model class for table "{{%tag}}".
@@ -16,15 +14,20 @@ use yii\base\Model;
  */
 class TagSearch extends Model
 {
+
     public $id;
     public $slug;
     public $title;
 
+    /**
+     * {@inheritdoc}
+     */
     public function rules()
     {
         return [
             ['id', 'integer'],
-            [['slug', 'title'], 'string', 'max' => 255],
+
+            [['slug', 'title'], 'string', 'max' => 256],
         ];
     }
 }

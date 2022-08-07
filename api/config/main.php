@@ -10,9 +10,9 @@ return [
     'id' => 'app-api',
     'basePath' => dirname(__DIR__),
 
-    // i18n configuration
+    // i18N
+    'language' => 'ru-RU',
     'sourceLanguage' => 'en-US',
-    'language' => 'uk-UA',
 
     'bootstrap' => ['log'],
     'controllerNamespace' => 'api\controllers',
@@ -20,19 +20,17 @@ return [
         'request' => [
             'parsers' => [
                 'application/json' => 'yii\web\JsonParser',
-            ],
+            ]
         ],
         'response' => [
             'class' => 'yii\web\Response',
             'format' => 'json',
         ],
-
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
-            'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
+            'identityCookie' => ['name' => '_identity-api', 'httpOnly' => true],
         ],
-
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
@@ -42,11 +40,10 @@ return [
                 ],
             ],
         ],
-
         'urlManager' => [
             'enablePrettyUrl' => true,
+            'enableStrictParsing' => true,
             'showScriptName' => false,
-            'enableStrictParsing' => false,
             'rules' => [
                 [
                     'class' => 'yii\rest\UrlRule',
@@ -57,7 +54,7 @@ return [
                 [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'news',
-//                    'only' => ['index', 'options'],
+                    'only' => ['index', 'view', 'options'],
                 ],
                 [
                     'class' => 'yii\rest\UrlRule',

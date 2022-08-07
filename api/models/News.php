@@ -2,11 +2,9 @@
 
 namespace api\models;
 
-
 use Yii;
 use yii\helpers\Url;
 use yii\web\Linkable;
-
 
 /**
  * This is the model class for table "{{%news}}".
@@ -20,34 +18,34 @@ use yii\web\Linkable;
  *
  * @property Category $category
  */
-class News extends \yii\db\ActiveRecord implements Linkable
+class News extends \common\models\News implements Linkable
 {
     /**
-     * {@inheritdoc}
+     * @return array
      */
-    public static function tableName()
-    {
-        return '{{%news}}';
-    }
-
     public function rules()
     {
         return [];
     }
 
+    /**
+     * @return array
+     */
     public function fields()
     {
         return [
             'id',
-            'category_id',
             'slug',
             'title',
-            'enabled' => function() {
+            'enabled' => function () {
                 return Yii::$app->formatter->asBoolean($this->enabled);
             },
         ];
     }
 
+    /**
+     * @return array
+     */
     public function extraFields()
     {
         return [
@@ -65,7 +63,7 @@ class News extends \yii\db\ActiveRecord implements Linkable
     }
 
     /**
-     * @inheritDoc
+     * @return array
      */
     public function getLinks()
     {
@@ -74,4 +72,13 @@ class News extends \yii\db\ActiveRecord implements Linkable
             'category' => Url::to(['category/view', 'id' => $this->category_id], true),
         ];
     }
+
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+//    public function getTags()
+//    {
+//        return $this->hasMany(Tag::class, ['id' => 'tag_id'])->viaTable('{{%tag_to_news}}', ['news_id' => 'id']);
+//    }
 }

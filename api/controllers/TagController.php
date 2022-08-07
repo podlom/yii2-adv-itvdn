@@ -2,12 +2,11 @@
 
 namespace api\controllers;
 
-
+//use yii\rest\ActiveController;
 use api\models\Tag;
 use yii\data\ActiveDataFilter;
 use yii\data\ActiveDataProvider;
 use yii\rest\Controller;
-
 
 /**
  * Class TagController

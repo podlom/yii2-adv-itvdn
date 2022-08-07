@@ -9,5 +9,5 @@ modules:
     enabled:
         - PhpBrowser:
             url: http://localhost/myapp
-        - \apitest\Helper\Acceptance
+        - api\test\Helper\Acceptance
 step_decorators: ~        

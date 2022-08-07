@@ -2,27 +2,23 @@
 
 namespace api\models;
 
+use yii\helpers\Url;
+use yii\web\Link;
+use yii\web\Linkable;
 
 /**
- * This is the model class for table "{{%category}}".
+ * Class Category
  *
  * @property int $id
  * @property string $slug
  * @property string $title
  * @property int $enabled
  *
- * @property News[] $news
+ *
+ * @package api\models
  */
-class Category extends \yii\db\ActiveRecord
+class Category extends \common\models\Category implements Linkable
 {
-    /**
-     * {@inheritdoc}
-     */
-    public static function tableName()
-    {
-        return '{{%category}}';
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -30,10 +26,37 @@ class Category extends \yii\db\ActiveRecord
     {
         return [
             ['enabled', 'default', 'value' => 0],
-            [['title'], 'required'],
+
+            [['title', 'slug', 'enabled'], 'required'],
+
             [['enabled'], 'boolean'],
-            [['slug', 'title'], 'string', 'max' => 255],
+
+            [['slug', 'title'], 'string', 'max' => 256],
+
             [['slug'], 'unique'],
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function fields()
+    {
+        return [
+            'id',
+            'slug',
+            'title',
+            'enabled'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function getLinks()
+    {
+        return [
+            Link::REL_SELF => Url::to(['category/view', 'id' => $this->id], true),
         ];
     }
 }

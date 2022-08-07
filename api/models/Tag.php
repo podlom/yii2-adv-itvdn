@@ -2,7 +2,6 @@
 
 namespace api\models;
 
-
 /**
  * This is the model class for table "{{%tag}}".
  *
@@ -12,23 +11,23 @@ namespace api\models;
  *
  * @property News[] $news
  */
-class Tag extends \yii\db\ActiveRecord
+class Tag extends \common\models\Tag
 {
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
+    public function rules()
     {
-        return '{{%tag}}';
+        return [
+        ];
     }
 
     /**
-     * Gets query for [[News]].
-     *
-     * @return \yii\db\ActiveQuery
+     * @return News[]|null|\yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
      */
     public function getNews()
     {
-        return $this->hasMany(News::class, ['id' => 'news_id'])->viaTable('{{%tag_to_news}}', ['tag_id' => 'id']);
+        return $this->hasMany(News::className(), ['id' => 'news_id'])->viaTable('{{%tag_to_news}}', ['tag_id' => 'id']);
     }
 }
